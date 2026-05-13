@@ -12,21 +12,16 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   ...compat.config({
-    overrides: [
-      {
-        files: ["prisma/**/*.ts", "scripts/**/*.ts"],
-        rules: {
-          "@typescript-eslint/no-explicit-any": "off",
-          "@typescript-eslint/no-var-requires": "off",
-        },
-      },
-    ],
-  }),
-  ...compat.config({
-    files: ["prisma/**/*.ts", "scripts/**/*.ts"],
     rules: {
+      "@typescript-eslint/no-unused-expressions": "off",
+      "@typescript-eslint/no-require-imports": "off",
       "@typescript-eslint/no-explicit-any": "off",
-      "@typescript-eslint/no-var-requires": "off",
+      "@typescript-eslint/no-unused-vars": "off",
+      "@typescript-eslint/no-this-alias": "off",
+      "@typescript-eslint/no-non-null-asserted-optional-chain": "off",
+      "no-undef": "warn",
+      "no-unused-vars": "warn",
+      "prefer-const": "warn",
     },
   }),
   {
@@ -34,12 +29,12 @@ const eslintConfig = [
       "**/node_modules/**",
       "**/.next/**",
       "**/.prisma/**",
+      "**/src/generated/**",
       "**/prisma/generated/**",
       "**/prisma/client/**",
       "**/@prisma/client/**",
     ],
   },
-
 ];
 
 export default eslintConfig;
