@@ -21,7 +21,10 @@ export const generateSetting = async () => {
 
 export const getSetting = async () => {
   try {
-    const setting = await prisma.setting.findFirst();
+    let setting = await prisma.setting.findFirst();
+    if(!setting) {
+      setting = await generateSetting();
+    }
     return {
       ...setting,
       iva: setting?.iva ? setting?.iva : 0,
